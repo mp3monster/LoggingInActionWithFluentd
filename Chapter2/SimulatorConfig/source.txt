@@ -1,0 +1,27 @@
++100 hello
++3000 hear about the new O Reilly book
++1000 called "Essential Changing stuff and seeing what happens"
++2000 Documentation is like sex
++2000 When it's good, it's very good
++300 When it's bad, its better than nothing
++1 Job requirement
++5 must understand core programming concepts
++10 able to code without cut and paste from StackOverflow
++3000 dictionary definition of a programmer - A machine that turns coffee into code
++1000 Programmer - A person who fixed a problem you don't know you have, in a way you don't understand
++50 algorithm - word used by programmers when they dont want to explain what they did
++60 hardware - the part of the computer that you can KICK
++5000 What is the object-orientated way to become wealthy?
++10 inheritance
++1000 what do computers and air conditioners have in common?
++10 they both become useless when you open windows
++1000 A programmer had a problem - he decided to use Java
++20 He now has a ProblemFactory
++1000 if you put a million monkeys on a million keyboards,
++10 one of them will eventually write a Java program
++10 The REST will write Perl
++100 99 little bugs in the code,
++100 99 little bugs in the code,
++10 1 bug fixed ... compiled again
++10 100 little bugs in the code
+
