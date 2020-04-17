@@ -1,0 +1,4 @@
++100 hello
++200 Documentation is like sex
++300 When it's good, it's very good
++100 When it's bad, its better than nothing
