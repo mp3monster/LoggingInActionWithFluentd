@@ -1,0 +1,1 @@
+groovy E:\dev\logsimulator\LogGenerator\logSourceSimulator.groovy %1 %2
