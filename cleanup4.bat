@@ -1,4 +1,4 @@
-cd ./Chapter3
+cd ./Chapter4
 del fluentd-file-output.*.log
 del structured-rolling-log.*.log
 del rotating-file-read.pos_file
