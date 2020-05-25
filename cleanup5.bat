@@ -1,6 +1,11 @@
 cd ./Chapter5
 del annotated-file-*.txt
-del annotated-file.pos_file
-del fluentd-file-output.*
+del *.pos_file
+del *.log
+del basic-file*.txt
+
 rmdir fluentd-file-output  
+rmdir label-pipeline-file-output  
+rmdir nonlabel-file-output   
+
 cd ..
