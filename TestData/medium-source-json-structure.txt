@@ -46,7 +46,7 @@
 +300 {"msg" : "I realised I was dyslexic when I went to a toga party dressed as a goat", "name" :  {"firstname": "Barry", "surname":"Gold"}, "age": 44}
 +300 {"msg" : "A dyslexic man walks into a bra", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
 +300 {"msg" : "The truth is out there. Anybody got the URL", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
-+300 {"msg" : "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
++300 {"msg" : "Unix is basically a simple operating system, but you have to be a genius to understand the simplicity", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
 +300 {"msg" : "Unix is user friendly. Its just selective about who its friends are", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
 +300 {"msg" : "My daily Unix command list: unzip; strip; touch; finger; mount; fsck; more; yes; unmount; sleep", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
 +300 {"msg" : "My software never has bugs. It just develops random features.", "name" : {"firstname": "Bart", "surname":"Fudd"}, "age": 25}
