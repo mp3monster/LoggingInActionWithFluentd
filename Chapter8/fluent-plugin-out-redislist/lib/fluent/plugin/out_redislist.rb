@@ -93,11 +93,9 @@ module Fluent
       def connect_redis()
         if !@redis
           begin
-          #@redis=Redis.new(host:@hostaddr,port:@port)
-          #@redis=Redis.new(host:"127.0.0.1",port:@port,connect_timeout:5,reconnect_attempts:2)
-          @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
-          @redis.connect!
-          log.debug "Connected to Redis "+@redis.connected?.to_s
+            @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
+            @redis.connect!
+            log.debug "Connected to Redis "+@redis.connected?.to_s
           rescue
             log.error "Error connecting to redis"
             return nil
