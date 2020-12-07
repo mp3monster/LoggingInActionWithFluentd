@@ -21,6 +21,9 @@ module Fluent
   module Plugin
     class RedislistOutput < Fluent::Plugin::Output
       Fluent::Plugin.register_output("redislist", self)
+      helpers :event_emitter
+
+      DefaultPort = 6379
 
       config_param :port, :integer, default: 6379, secret: false, alias: :port
       config_param :hostaddr, :string, default: "127.0.0.1", secret: false
@@ -47,10 +50,12 @@ module Fluent
             log.debug time
             log.debug record
             if (@redis.connected?)
-              newlength = @redis.lpush(@listname,"value")
-              log.info "lpushed to "+@listname
+              redis_out = '{"tag" : "'+tag.to_s+'",time" : '+ time.to_s+', "record" :"'+record.to_s+'"}'
+              @redis.lpush(@listname,redis_out)
+              log.info "lpushed to "+@listname+"payload="+redis_out
             else
               log.warn "no connection to Redis"
+              router.emit_error_event(tag, time, record, "No Redis")
             end
           end
         end
@@ -58,8 +63,12 @@ module Fluent
 
       def configure(conf)
         super
-        @port = conf['port']
-        # add custom validation here If the configuration is invalid, raise Fluent::ConfigError
+        port = conf['port']
+        if (port != RedislistOutput::DefaultPort)
+          log.info ("Default Redis port in use")
+        else
+          log.warn ("Non standard Redis port in use - ensure ports are deconflicted")
+        end
       end
 
       def start
@@ -71,27 +80,27 @@ module Fluent
       def shutdown
         super
         if @redis 
-          @redis.disconnect!
-          log.debug "disconnecting from redis\n"
+          begin
+            @redis.disconnect!
+            log.debug "disconnecting from redis\n"
+            @redis = nil
+          rescue
+            log.error "Error closing Redis connection"
+          end
         end
       end      
-
-      # combine the Fluentd tag, timestamp and record into a JSON payload
-      # as we don't knowe for sure whether the record will be JSON in nature - easiest if we process
-      # everything as a string.
-      def buildListEntry(tag,time,record)
-        return '{"tag" : '+ tag + '",time" : ' + time + ', "record" :'+record+'"}'
-      end
 
       def connect_redis()
         if !@redis
           begin
           #@redis=Redis.new(host:@hostaddr,port:@port)
-          @redis=Redis.new(host:"127.0.0.1",port:6379,connect_timeout:5,reconnect_attempts:2)
+          #@redis=Redis.new(host:"127.0.0.1",port:@port,connect_timeout:5,reconnect_attempts:2)
+          @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
           @redis.connect!
           log.debug "Connected to Redis "+@redis.connected?.to_s
           rescue
             log.error "Error connecting to redis"
+            return nil
           end
         end
       end
