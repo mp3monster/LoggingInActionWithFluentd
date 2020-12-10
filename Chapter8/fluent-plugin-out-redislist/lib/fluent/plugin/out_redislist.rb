@@ -43,16 +43,19 @@ module Fluent
           connect_redis()
         end
 
-        log.debug "Request received"
+        log.trace "process request received"
 
         @redis.multi do
           es.each do |time, record|
-            log.debug time
-            log.debug record
+            log.debug tag, time, record 
             if (@redis.connected?)
-              redis_out = '{"tag" : "'+tag.to_s+'",time" : '+ time.to_s+', "record" :"'+record.to_s+'"}'
+              redis_entry = Hash.new
+              redis_entry.store("tag", tag.to_s)
+              redis_entry.store("time", time.to_i)
+              redis_entry.store("record", record.to_s)
+              redis_out = JSON.generate(redis_entry)
               @redis.lpush(@listname,redis_out)
-              log.info "lpushed to "+@listname+"payload="+redis_out
+              log.debug "lpushed to "+@listname+" "+redis_out
             else
               log.warn "no connection to Redis"
               router.emit_error_event(tag, time, record, "No Redis")
