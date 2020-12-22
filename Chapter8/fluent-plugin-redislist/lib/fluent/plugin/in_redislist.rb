@@ -35,12 +35,29 @@ module Fluent
       config_param :add_original_time_name, :string, default: "originalTime"
       config_param :tag, :string, default: @type
     
-      
+      # the labels to identify the three core constructs of a log event when added to Redis
+      TagAttributeLabel = "tag"
+      TimeAttributeLabel = "time"
+      RecordAttributeLabel = "record"      
+
       keep_running = true
       SEPARATOR = ','
 
+      def injectOriginalValue (data, data_record, key, new_name)
+        log.debug "injecting original ", key
+
+        if (data_record.length > 2)
+          separator = SEPARATOR
+        else
+          separator = ''
+        end
+        data_record.insert(data_record.index('{')+1, '"'+new_name+'":'+data[key].to_s + separator)
+        return data_record
+      end
+
+      # tag the Redis entries and emit the log event so it is consumed by the next step in the Fluent chain of plugins
       def emit
-          log.trace ("emit triggered")
+          log.trace "emit triggered"
           if @redis
             keep_popping = true
 
@@ -48,45 +65,29 @@ module Fluent
               popped = @redis.lpop(@listname)
     
               if popped
-                log.debug ("Popped:"+popped)
+                log.debug "Popped:", popped
                 data = JSON.parse(popped)
                 if (@use_original_time)
-                  time = data["time"]
+                  time = data[TimeAttributeLabel]
                 else
                   time = Fluent::EventTime.now
                 end
 
                 if (@use_original_tag)
-                  tag = data["tag"]
+                  tag = data[RedislistInput::TagAttributeLabel]
                 else
                   tag = @tag
                 end
 
-                data_record = data.fetch("record").to_s
+                data_record = data.fetch(RecordAttributeLabel).to_s
                 log.debug "original data record=>",data_record
 
-                if @add_original_time && !(data_record.include? '"'+@add_original_time_name+'"')
-                  log.debug ("injecting original time")
-
-                  if (data_record.length > 2)
-                    separator = SEPARATOR
-                  else
-                    separator = ''
-                  end
-
-                  data_record.insert(data_record.index('{')+1, '"'+@add_original_time_name+'":'+data["time"].to_s + separator)
+                if (@add_original_time && !(data_record.include? '"'+@add_original_time_name+'"'))
+                  data_record = injectOriginalValue(data,data_record,RedislistInput::TimeAttributeLabel,@add_original_time_name)
                 end
 
                 if @add_original_tag && !(data_record.include? '"'+@add_original_tag_name+'"')
-                  log.debug ("injecting original name")
-
-                  if (data_record.length > 2)
-                    separator = SEPARATOR
-                  else
-                    separator = ''
-                  end
-
-                  data_record.insert(data_record.index('{')+1, '"'+@add_original_tag_name+'":"'+data["tag"]+'"' + separator)
+                  data_record = injectOriginalValue(data,data_record,RedislistInput::TagAttributeLabel,@add_original_tag_name)
                 end
 
                 log.debug "Emitting -->", tag," ", time, " ", data_record
@@ -98,8 +99,9 @@ module Fluent
           end
         end
 
+      #time to do something?
       def run
-        log.trace ("callback triggered")
+        log.trace ("run triggered")
         while thread_current_running?
           current_time = Time.now.to_i
 
@@ -112,6 +114,7 @@ module Fluent
 
       end
 
+      # let's say hello to Redis and set out timed activity off
       def start
         super
         log.debug "starting redis plugin\n"
@@ -120,6 +123,7 @@ module Fluent
         thread_create(:RedislistInput, &method(:run))
       end
 
+      #timer to say goodbye to redis
       def shutdown
         super
 
@@ -134,6 +138,7 @@ module Fluent
         end
       end      
 
+      # build a connection to Redis driven by the configuration values provided
       def connect_redis()
         if !@redis
           begin
