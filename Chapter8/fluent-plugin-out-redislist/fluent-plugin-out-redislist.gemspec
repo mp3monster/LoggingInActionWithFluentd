@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name    = "fluent-plugin-out-redislist"
   spec.version = "0.1.0"
   spec.authors = ["Phil Wilkins"]
-  spec.email   = ["phil@mp3monster.org"]
+  spec.email   = ["someone at mp3monster.org"]
 
   spec.summary   = %q{This provides an Fluentd Output to Redis List it has been developed to support a Chapter of Unified Logging with Fluentd by Manning}
   spec.description   = spec.summary
