@@ -39,6 +39,14 @@ module Fluent
       desc "Defines the name of the list to be used in Redis, by default this is Fluentd"
       config_param :listname, :string, default: "fluentd"
 
+      #setup the buffer configuration
+      config_section :buffer do
+        config_set_default :@type, 'memory'
+        config_set_default :chunk_keys, ["tag"]
+        config_set_default :chunk_limit_records, 20
+      end
+
+
       # use the Redis connection as a member variable so we don't need to keep constructing connections
       # each time we need to perform an operation
       @redis
@@ -48,19 +56,17 @@ module Fluent
       # - connection pooling
       # - specify connection timeouts and reconnection behavior
 
-      def write (tag,time,record)
-        if (@redis.connected?)
-          redis_entry = Hash.new
-          redis_entry.store(RedislistOutput::TagAttributeLabel,tag.to_s)
-          redis_entry.store(RedislistOutput::TimeAttributeLabel,time.to_i)
-          redis_entry.store(RedislistOutput::RecordAttributeLabel,record.to_s)
-          redis_out = JSON.generate(redis_entry)
-          @redis.lpush(@listname,redis_out)
-          log.debug "lpushed to ", @listname," ",redis_out
-        else
-          log.warn "no connection to Redis"
-          router.emit_error_event(tag, time, record, "No Redis")
-        end
+      #def format(tag, time, record)
+      #  return redisFormat(tag,time,record)
+      #end
+
+      def redisFormat(tag,time,record)
+        redis_entry = Hash.new
+        redis_entry.store(RedislistOutput::TagAttributeLabel,tag.to_s)
+        redis_entry.store(RedislistOutput::TimeAttributeLabel,time.to_i)
+        redis_entry.store(RedislistOutput::RecordAttributeLabel,record.to_s)
+        redis_out = JSON.generate(redis_entry)
+        return redis_out
       end
 
       def process(tag,es)
@@ -69,15 +75,30 @@ module Fluent
         end
 
         log.trace "process request received"
-        @redis.multi do
-          es.each do |time, record|
-            log.debug tag, time, record 
-            write(tag,time,record)
-          end
+        if (@redis.connected?)
+          @redis.multi
+            es.each do |time, record|
+              log.debug "process redis push:", tag, time, record, @listname
+              @redis.lpush(@listname,redisFormat(tag,time,record))
+            end
+          
+          @redis.exec
+        else
+          log.warn "no connection to Redis"
+          router.emit_error_event(tag, time, record, "No Redis")
         end
-        @redis.exec()
       end
 
+      def write(chunk)
+        log.debug chunk
+
+        @redis.multi 
+          chunk.each do |time, record|
+            log.debug "write sync redis push ", chunk.metadata.tag, time, record, @listname
+            @redis.lpush(@listname,redisFormat(chunk.metadata.tag,time,record))
+          end
+        @redis.exec
+      end
 
       def checkPort(conf)
         port = conf[PortConfigLabel]
@@ -88,9 +109,17 @@ module Fluent
         end
       end
 
+      def checkBuffer(conf)
+        if !conf.elements(name: 'buffer').empty?
+          log.info "buffer set; size=", conf.elements(name: 'chunk_limit_records')
+        end   
+      end
+
+
       def configure(conf)
         super
         checkPort (conf)
+        checkBuffer(conf)
       end
 
       def start

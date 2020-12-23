@@ -15,6 +15,7 @@
 
 require 'json'
 require "fluent/plugin/input"
+require "redis"
 
 module Fluent
   module Plugin
@@ -23,7 +24,7 @@ module Fluent
 
       helpers :thread
 
-      config_param :port, :integer, default: 6379, secret: false, alias: :port
+      config_param :port, :integer, default: 6379, secret: false, alias: :portNo
       config_param :hostaddr, :string, default: "127.0.0.1", secret: false
       config_param :listname, :string, default: "fluentd"
       config_param :run_interval, :integer, default: 1
@@ -43,6 +44,10 @@ module Fluent
       keep_running = true
       SEPARATOR = ','
 
+      # use the Redis connection as a member variable so we don't need to keep constructing connections
+      # each time we need to perform an operation
+      @redis
+
       def injectOriginalValue (data, data_record, key, new_name)
         log.debug "injecting original ", key
 
@@ -58,14 +63,19 @@ module Fluent
       # tag the Redis entries and emit the log event so it is consumed by the next step in the Fluent chain of plugins
       def emit
           log.trace "emit triggered"
+          if !@redis
+            log.debug "reconnecting Redis ",@hostaddr,":",@port
+            connect_redis()
+          end
+
           if @redis
             keep_popping = true
 
             while keep_popping
               popped = @redis.lpop(@listname)
     
+              log.debug "Popped",@listname, ": ", popped
               if popped
-                log.debug "Popped:", popped
                 data = JSON.parse(popped)
                 if (@use_original_time)
                   time = data[TimeAttributeLabel]
@@ -96,6 +106,8 @@ module Fluent
                 keep_popping = false
               end
             end
+          else
+            log.warn "No Redis - ", @redis
           end
         end
 
@@ -110,7 +122,6 @@ module Fluent
             sleep @run_interval
           end
         end
-  
 
       end
 
@@ -140,13 +151,16 @@ module Fluent
 
       # build a connection to Redis driven by the configuration values provided
       def connect_redis()
+        log.trace "connect_redis called"
         if !@redis
           begin
+            log.trace "initialize redis ", @hostaddr,":",@port
             @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
+            log.trace "redis object initialized"
             @redis.connect!
             log.debug "Connected to Redis "+@redis.connected?.to_s
-          rescue
-            log.error "Error connecting to redis"
+          rescue => err
+            log.error "Error connecting to redis - ", err.message, "|",err.class.to_s
             return nil
           end
         end
