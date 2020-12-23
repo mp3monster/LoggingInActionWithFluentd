@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.authors = ["Phil Wilkins"]
   spec.email   = ["phil@mp3monster.org"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary   = %q{This provides an Fluentd Input to Redis List it has been developed to support a Chapter of Unified Logging with Fluentd by Manning}
+  spec.description   = spec.summary
+  spec.homepage      = "http://mp3monster.org"
   spec.license       = "Apache-2.0"
 
   test_files, files  = `git ls-files -z`.split("\x0").partition do |f|
@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "test-unit", "~> 3.0"
   spec.add_runtime_dependency "fluentd", [">= 0.14.10", "< 2"]
+  spec.add_runtime_dependency "redis"
 end
