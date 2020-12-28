@@ -32,12 +32,17 @@ module Fluent
 
       DefaultPort = 6379
 
-      desc "specifies the port to connect to Redis with"
+      desc "specifies the port to connect to Redis with, will default to 6379 if not specified"
       config_param :port, :integer, default: 6379, secret: false, alias: :port
       desc "Defines the host address for Redis, if not defined 127.0.0.1"
       config_param :hostaddr, :string, default: "127.0.0.1", secret: false
       desc "Defines the name of the list to be used in Redis, by default this is Fluentd"
       config_param :listname, :string, default: "fluentd"
+      desc "Defines the number of reconnection attempts before giving up on connecting to the Redis server"
+      config_param :reconnect_attempts, :integer, default: 2
+      desc "Defines the number of seconds before timing out a connection to the Redis server"
+      config_param :connection_timeout, :integer, default: 5
+      
 
       #setup the buffer configuration
       config_section :buffer do
@@ -55,10 +60,6 @@ module Fluent
       # - HTTPS connectivity
       # - connection pooling
       # - specify connection timeouts and reconnection behavior
-
-      #def format(tag, time, record)
-      #  return redisFormat(tag,time,record)
-      #end
 
       def redisFormat(tag,time,record)
         redis_entry = Hash.new
@@ -144,11 +145,15 @@ module Fluent
       def connect_redis()
         if !@redis
           begin
-            @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
-            @redis.connect!
+            @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:@connection_timeout,reconnect_attempts:@reconnect_attempts)
             log.debug "Connected to Redis "+@redis.connected?.to_s
-          rescue
-            log.error "Error connecting to redis"
+          rescue Redis::BaseConnectionError, Redis::CannotConnectError => conn_err
+            log.error "Connection error - ", conn_err.message, "\n connection timeout=", @connection_timeout, "\n connection attempts=", @reconnect_attempts
+            @redis = nil
+            return nil
+          rescue => err
+            log.error "Error connecting to redis - ", err.message, "|",err.class.to_s
+            @redis = nil
             return nil
           end
         end
