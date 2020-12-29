@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
 
   spec.summary   = %q{This provides an Fluentd Input to Redis List it has been developed to support a Chapter of Unified Logging with Fluentd by Manning}
   spec.description   = spec.summary
-  spec.homepage      = "http://mp3monster.org"
+  spec.homepage      = "https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/"
   spec.license       = "Apache-2.0"
 
   test_files, files  = `git ls-files -z`.split("\x0").partition do |f|
