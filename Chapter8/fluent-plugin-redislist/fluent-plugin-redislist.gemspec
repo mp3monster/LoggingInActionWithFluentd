@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
 
   spec.summary   = %q{This provides an Fluentd Input to Redis List it has been developed to support a Chapter of Unified Logging with Fluentd by Manning}
   spec.description   = spec.summary
-  spec.homepage      = "http://mp3monster.org"
+  spec.homepage      = "https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/"
   spec.license       = "Apache-2.0"
 
   test_files, files  = `git ls-files -z`.split("\x0").partition do |f|
@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = test_files
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.14"
+  spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "test-unit", "~> 3.0"
   spec.add_runtime_dependency "fluentd", [">= 0.14.10", "< 2"]
-  spec.add_runtime_dependency "redis"
+  spec.add_runtime_dependency "redis", "~>2.0"
 end
