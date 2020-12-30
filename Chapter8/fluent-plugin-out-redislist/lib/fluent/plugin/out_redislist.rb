@@ -32,6 +32,7 @@ module Fluent
 
       DefaultPort = 6379
 
+      #define the configuration parameters that will tell us where to connecto the Fluentd instance
       desc "specifies the port to connect to Redis with, will default to 6379 if not specified"
       config_param :port, :integer, default: 6379, secret: false, alias: :port
       desc "Defines the host address for Redis, if not defined 127.0.0.1"
@@ -42,13 +43,14 @@ module Fluent
       config_param :reconnect_attempts, :integer, default: 2
       desc "Defines the number of seconds before timing out a connection to the Redis server"
       config_param :connection_timeout, :integer, default: 5
-      
+      desc "Defines the number of log events in a chunk"
+      config_param :chunksize, :integer, default: 20
 
       #setup the buffer configuration
       config_section :buffer do
         config_set_default :@type, 'memory'
         config_set_default :chunk_keys, ["tag"]
-        config_set_default :chunk_limit_records, 20
+        config_set_default :chunk_limit_records, @chunksize
       end
 
 
@@ -61,6 +63,8 @@ module Fluent
       # - connection pooling
       # - specify connection timeouts and reconnection behavior
 
+      # build the representation of the log event to be used within Redis.
+      # We've not overloaded the format operation as that disrupts default behaviors
       def redisFormat(tag,time,record)
         redis_entry = Hash.new
         redis_entry.store(RedislistOutput::TagAttributeLabel,tag.to_s)
@@ -70,6 +74,7 @@ module Fluent
         return redis_out
       end
 
+      # process the received events - pushing them onto the list
       def process(tag,es)
         if !@redis
           connect_redis()
