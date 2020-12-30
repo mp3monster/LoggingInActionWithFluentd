@@ -50,6 +50,13 @@ module Fluent
       config_param :add_original_time_name, :string, default: "originalTime"
       desc "Sets the tag if not defined to match the plugin type"
       config_param :tag, :string, default: @type
+
+      directionLabel = "direction"
+      FIFOdirection = "FIFO"
+      LIFOdirection = "LIFO"
+
+      desc "Process as FIFO or as LIFO"
+      config_param :direction, :string, default: "FIFO"    
     
       # the labels to identify the three core constructs of a log event when added to Redis
       TagAttributeLabel = "tag"
@@ -62,6 +69,8 @@ module Fluent
       # use the Redis connection as a member variable so we don't need to keep constructing connections
       # each time we need to perform an operation
       @redis
+
+      @fifo = true
 
       def injectOriginalValue (data, data_record, key, new_name)
         log.debug "injecting original ", key
@@ -87,7 +96,11 @@ module Fluent
             keep_popping = true
 
             while keep_popping
-              popped = @redis.lpop(@listname)
+              if (@fifo)
+                popped = @redis.rpop(@listname)
+              else
+                popped = @redis.lpop(@listname)
+              end
     
               log.debug "Popped",@listname, ": ", popped
               if popped
@@ -140,6 +153,26 @@ module Fluent
 
       end
 
+      def setfifo(conf)
+        @fifo=true
+        if !conf.elements(name: 'directionLabel').empty?
+          directionset = conf[directionLabel].upercase
+
+          if directionset.eql? LIFOdirection
+            @fifo=false
+          elsif !(directionset.eql? FIFOdirection)
+            @fifo=false
+            log.warn directionLabel, " value not recognized ", directionset, " defaulting to ", FIFOdirection
+          end
+        end   
+      end
+
+
+      def configure(conf)
+        super
+        setfifo(conf)
+      end
+
       # let's say hello to Redis and set out timed activity off
       def start
         super
@@ -149,14 +182,14 @@ module Fluent
         thread_create(:RedislistInput, &method(:run))
       end
 
-      #timer to say goodbye to redis
+      #time to say goodbye to redis
       def shutdown
         super
 
         if @redis 
           begin
             @redis.disconnect!
-            log.debug "disconnecting from redis\n"
+            log.debug "disconnecting from Redis\n"
             @redis = nil
           rescue
             log.error "Error closing Redis connection"
