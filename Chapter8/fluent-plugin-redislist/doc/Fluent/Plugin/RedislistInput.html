@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fluent::Plugin::RedislistInput
+  
+    &mdash; Documentation by YARD 0.9.26
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fluent::Plugin::RedislistInput";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Fluent.html" title="Fluent (module)">Fluent</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Plugin.html" title="Fluent::Plugin (module)">Plugin</a></span></span>
+     &raquo; 
+    <span class="title">RedislistInput</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fluent::Plugin::RedislistInput
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Input</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Input</li>
+          
+            <li class="next">Fluent::Plugin::RedislistInput</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/fluent/plugin/in_redislist.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Input plugin for Fluentd using Redis Lists all of our methods include the use of Trace - whilst typically this would be overkill, it does help with observing how the plugin is working todo: For candidate functional improvements see the readme-final.md file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/" target="_parent" title="https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/">https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/</a></li>
+    
+  </ul>
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="FIFOdirection-constant" class="">FIFOdirection =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>defined expected value for direction to be FIFO. This is our default</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>FIFO</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="LIFOdirection-constant" class="">LIFOdirection =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>defined expected value for direction to be LIFO</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>LIFO</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="TagAttributeLabel-constant" class="">TagAttributeLabel =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>the label used to identify the tag part of a log event when added to Redis</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tag</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="TimeAttributeLabel-constant" class="">TimeAttributeLabel =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>the label used to identify the time part of a log event when added to Redis</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="RecordAttributeLabel-constant" class="">RecordAttributeLabel =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>the label used to identify the actual log event record part of a log event when added to Redis</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>record</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="SEPARATOR-constant" class="">SEPARATOR =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>separater on a JSON structure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configure-instance_method" title="#configure (instance method)">#<strong>configure</strong>(conf)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>overload the configure(conf) to process the fifo/lifo configurartion option.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect_redis-instance_method" title="#connect_redis (instance method)">#<strong>connect_redis</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>build a connection to Redis driven by the configuration values provided.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#emit-instance_method" title="#emit (instance method)">#<strong>emit</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>tag the Redis entries and emit the log event so it is consumed by the next step in the Fluent chain of plugins we keep popping from redis for as long as we can assuming we have a  connection.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inject_original_value-instance_method" title="#inject_original_value (instance method)">#<strong>inject_original_value</strong>(data, data_record, key, new_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>this takes the log event and incorporates the original value (tag or time) into the log event using the provided element name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run-instance_method" title="#run (instance method)">#<strong>run</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Setup the loop thread and if nothing to emit - go to sleep implemented so we can control the thread sleep interval and invoke the standard emit operation when its time.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setfifo-instance_method" title="#setfifo (instance method)">#<strong>setfifo</strong>(conf)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>look at the configuration determine which way should the list be used LIFO or FIFO if in doubt we adopt the FIFO behavior.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shutdown-instance_method" title="#shutdown (instance method)">#<strong>shutdown</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>time to say goodbye to redis, invoke the parent class first to do the general  shutdown tasks and then close the connection to Redis and relis the  connection object.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start-instance_method" title="#start (instance method)">#<strong>start</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>let&#39;s say hello to Redis and set out timed activity off.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="configure-instance_method">
+  
+    #<strong>configure</strong>(conf)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>overload the configure(conf) to process the fifo/lifo configurartion option. But invoke the parent as this will help with any other configuration options</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>conf</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Fluentd confguration object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+247
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 247</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_conf'>conf</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='id identifier rubyid_setfifo'>setfifo</span><span class='lparen'>(</span><span class='id identifier rubyid_conf'>conf</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="connect_redis-instance_method">
+  
+    #<strong>connect_redis</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>build a connection to Redis driven by the configuration values provided</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_connect_redis'>connect_redis</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>connect_redis called</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@redis</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>initialize redis </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@hostaddr</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@port</span>
+      <span class='ivar'>@redis</span><span class='op'>=</span><span class='const'>Redis</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>host:</span><span class='ivar'>@hostaddr</span><span class='comma'>,</span><span class='label'>port:</span><span class='ivar'>@port</span><span class='comma'>,</span><span class='label'>connect_timeout:</span><span class='int'>5</span><span class='comma'>,</span><span class='label'>reconnect_attempts:</span><span class='int'>2</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>redis object initialized</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connected to Redis </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_connected?'>connected?</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>rescue</span> <span class='const'>Redis</span><span class='op'>::</span><span class='const'>BaseConnectionError</span><span class='comma'>,</span> <span class='const'>Redis</span><span class='op'>::</span><span class='const'>CannotConnectError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_conn_err'>conn_err</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection error - </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_conn_err'>conn_err</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n connection timeout=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@connection_timeout</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n connection attempts=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@reconnect_attempts</span>
+      <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_err'>err</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error connecting to redis - </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_err'>err</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>|</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_err'>err</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>return</span> <span class='kw'>nil</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="emit-instance_method">
+  
+    #<strong>emit</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>tag the Redis entries and emit the log event so it is consumed by the next step in the Fluent chain of plugins we keep popping from redis for as long as we can assuming we have a  connection. Use our utilities to help with handling the events original time stamp</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_emit'>emit</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>emit triggered</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@redis</span>
+    <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>reconnecting Redis </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@hostaddr</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@port</span>
+    <span class='id identifier rubyid_connect_redis'>connect_redis</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># if we have a connection then we can try and pop entries
+</span>  <span class='comment'># from the list
+</span>  <span class='kw'>if</span> <span class='ivar'>@redis</span>
+    <span class='id identifier rubyid_keep_popping'>keep_popping</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+    <span class='kw'>while</span> <span class='id identifier rubyid_keep_popping'>keep_popping</span>
+      <span class='comment'># pop from the list using the configured end
+</span>      <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@fifo</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_popped'>popped</span> <span class='op'>=</span> <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_rpop'>rpop</span><span class='lparen'>(</span><span class='ivar'>@listname</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_popped'>popped</span> <span class='op'>=</span> <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_lpop'>lpop</span><span class='lparen'>(</span><span class='ivar'>@listname</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Popped</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@listname</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>: </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_popped'>popped</span>
+      <span class='comment'># if we got a record from the list then let&#39;s process it
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_popped'>popped</span>
+        <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_popped'>popped</span><span class='rparen'>)</span>
+
+        <span class='comment'>#decide what to do about the original time, if it&#39;s used
+</span>        <span class='comment'># then set the log event time to the original value otherwise
+</span>        <span class='comment'># time for the event is now
+</span>        <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@use_original_time</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#TimeAttributeLabel-constant" title="Fluent::Plugin::RedislistInput::TimeAttributeLabel (constant)">TimeAttributeLabel</a></span></span><span class='rbracket'>]</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Fluent.html" title="Fluent (module)">Fluent</a></span></span><span class='op'>::</span><span class='const'>EventTime</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+        <span class='kw'>end</span>
+
+        <span class='comment'>#decide what to do with the original tag
+</span>        <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@use_original_tag</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="" title="Fluent::Plugin::RedislistInput (class)">RedislistInput</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#TagAttributeLabel-constant" title="Fluent::Plugin::RedislistInput::TagAttributeLabel (constant)">TagAttributeLabel</a></span></span><span class='rbracket'>]</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='ivar'>@tag</span>
+        <span class='kw'>end</span>
+
+        <span class='comment'># extract the original log event record
+</span>        <span class='id identifier rubyid_data_record'>data_record</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#RecordAttributeLabel-constant" title="Fluent::Plugin::RedislistInput::RecordAttributeLabel (constant)">RecordAttributeLabel</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+        <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>original data record=&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_data_record'>data_record</span>
+
+        <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@add_original_time</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_data_record'>data_record</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='ivar'>@add_original_time_name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_data_record'>data_record</span> <span class='op'>=</span> <span class='id identifier rubyid_inject_original_value'>inject_original_value</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span><span class='id identifier rubyid_data_record'>data_record</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="" title="Fluent::Plugin::RedislistInput (class)">RedislistInput</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#TimeAttributeLabel-constant" title="Fluent::Plugin::RedislistInput::TimeAttributeLabel (constant)">TimeAttributeLabel</a></span></span><span class='comma'>,</span><span class='ivar'>@add_original_time_name</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='ivar'>@add_original_tag</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_data_record'>data_record</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='ivar'>@add_original_tag_name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_data_record'>data_record</span> <span class='op'>=</span> <span class='id identifier rubyid_inject_original_value'>inject_original_value</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span><span class='id identifier rubyid_data_record'>data_record</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="" title="Fluent::Plugin::RedislistInput (class)">RedislistInput</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#TagAttributeLabel-constant" title="Fluent::Plugin::RedislistInput::TagAttributeLabel (constant)">TagAttributeLabel</a></span></span><span class='comma'>,</span><span class='ivar'>@add_original_tag_name</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+
+        <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Emitting --&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_time'>time</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data_record'>data_record</span>
+        <span class='id identifier rubyid_router'>router</span><span class='period'>.</span><span class='id identifier rubyid_emit'>emit</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_time'>time</span><span class='comma'>,</span> <span class='id identifier rubyid_data_record'>data_record</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='comment'># no more events so let the loop drop
+</span>        <span class='id identifier rubyid_keep_popping'>keep_popping</span> <span class='op'>=</span> <span class='kw'>false</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No Redis - </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@redis</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inject_original_value-instance_method">
+  
+    #<strong>inject_original_value</strong>(data, data_record, key, new_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>this takes the log event and incorporates the original value (tag or time) into the log event using the provided element name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>structure holding the value to be inserted - this will be a base element using the structure used when storing the log event in Redis</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_record</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>log event record construct which needs the element adding to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the element in the Redis stored structure to be incorporated into the log event record i.e. time or tag</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>new_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name string to use for the element going into the log event record structure</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>the data_record with the new attributed added</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inject_original_value'>inject_original_value</span> <span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span><span class='id identifier rubyid_data_record'>data_record</span><span class='comma'>,</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_new_name'>new_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>injecting original </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span>
+
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_data_record'>data_record</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_separator'>separator</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#SEPARATOR-constant" title="Fluent::Plugin::RedislistInput::SEPARATOR (constant)">SEPARATOR</a></span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+  <span class='comment'># by inserting the details into the start of the string we only need to find the initial bracket
+</span>  <span class='comment'># there is no need to parse the structure, worry about escaped characters etc
+</span>  <span class='id identifier rubyid_data_record'>data_record</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_data_record'>data_record</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>{</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='id identifier rubyid_new_name'>new_name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;:</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='id identifier rubyid_separator'>separator</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_data_record'>data_record</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="run-instance_method">
+  
+    #<strong>run</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Setup the loop thread and if nothing to emit - go to sleep implemented so we can control the thread sleep interval and invoke the standard emit operation when its time.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 232</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>run triggered</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>while</span> <span class='id identifier rubyid_thread_current_running?'>thread_current_running?</span>
+    <span class='id identifier rubyid_current_time'>current_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+
+    <span class='id identifier rubyid_emit'>emit</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_thread_current_running?'>thread_current_running?</span>
+    <span class='kw'>while</span> <span class='id identifier rubyid_thread_current_running?'>thread_current_running?</span> <span class='op'>&amp;&amp;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_current_time'>current_time</span>
+      <span class='id identifier rubyid_sleep'>sleep</span> <span class='ivar'>@run_interval</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setfifo-instance_method">
+  
+    #<strong>setfifo</strong>(conf)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>look at the configuration determine which way should the list be used LIFO or FIFO if in doubt we adopt the FIFO behavior. If the configuration isn&#39;t set we default to FIFO if a value is provided we dont recognize, then default to FIFO but report a warning</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>conf</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>configuration data provided from Fluentd</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 101</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setfifo'>setfifo</span><span class='lparen'>(</span><span class='id identifier rubyid_conf'>conf</span><span class='rparen'>)</span>
+  <span class='ivar'>@fifo</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_conf'>conf</span><span class='period'>.</span><span class='id identifier rubyid_elements'>elements</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_directionLabel'>directionLabel</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_directionset'>directionset</span> <span class='op'>=</span> <span class='id identifier rubyid_conf'>conf</span><span class='lbracket'>[</span><span class='id identifier rubyid_directionLabel'>directionLabel</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_upercase'>upercase</span>
+
+    <span class='comment'># if the direction is set to LIFO switch the flag
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_directionset'>directionset</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span> <span class='const'><span class='object_link'><a href="#LIFOdirection-constant" title="Fluent::Plugin::RedislistInput::LIFOdirection (constant)">LIFOdirection</a></span></span>
+      <span class='ivar'>@fifo</span><span class='op'>=</span><span class='kw'>false</span>
+    <span class='kw'>elsif</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_directionset'>directionset</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span> <span class='const'><span class='object_link'><a href="#FIFOdirection-constant" title="Fluent::Plugin::RedislistInput::FIFOdirection (constant)">FIFOdirection</a></span></span><span class='rparen'>)</span>
+      <span class='ivar'>@fifo</span><span class='op'>=</span><span class='kw'>false</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='id identifier rubyid_directionLabel'>directionLabel</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> value not recognized </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_directionset'>directionset</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> defaulting to </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#FIFOdirection-constant" title="Fluent::Plugin::RedislistInput::FIFOdirection (constant)">FIFOdirection</a></span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span> 
+  <span class='kw'>return</span> <span class='ivar'>@fifo</span>  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shutdown-instance_method">
+  
+    #<strong>shutdown</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>time to say goodbye to redis, invoke the parent class first to do the general  shutdown tasks and then close the connection to Redis and relis the  connection object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 266</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span>
+  <span class='kw'>super</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_trace'>trace</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shutdown</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>if</span> <span class='ivar'>@redis</span> 
+    <span class='kw'>begin</span>
+      <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_disconnect!'>disconnect!</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>disconnecting from Redis\n</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>rescue</span>
+      <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error closing Redis connection</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start-instance_method">
+  
+    #<strong>start</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>let&#39;s say hello to Redis and set out timed activity off. Make use of the parent class to ensure that all ther associated  basic operations such as tracking state</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255
+256
+257
+258
+259
+260
+261</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fluent/plugin/in_redislist.rb', line 255</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start'>start</span>
+  <span class='kw'>super</span>
+  <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>starting redis plugin\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_connect_redis'>connect_redis</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_thread_create'>thread_create</span><span class='lparen'>(</span><span class='symbol'>:RedislistInput</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:run</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Dec 31 21:01:52 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.26 (ruby-2.6.4).
+</div>
+
+    </div>
+  </body>
+</html>
