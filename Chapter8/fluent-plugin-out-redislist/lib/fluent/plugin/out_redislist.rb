@@ -19,20 +19,31 @@ require "redis"
 
 module Fluent
   module Plugin
+    # Output plugin for Fluentd using Redis Lists
+    # all of our methods include the use of Trace - whilst typically this would be overkill, it does
+    # help with observing how the plugin is working
+    # @see https://blog.mp3monster.org/publication-contributions/fluentd-unified-logging-with/
+    #todo: For candidate functional improvements see the readme-final.md file
     class RedislistOutput < Fluent::Plugin::Output
       Fluent::Plugin.register_output("redislist", self)
       helpers :event_emitter
 
-      # the labels to identify the three core constructs of a log event when added to Redis
+
+      # the label used to identify the tag part of a log event when added to Redis
       TagAttributeLabel = "tag"
+      # the label used to identify the time part of a log event when added to Redis
       TimeAttributeLabel = "time"
+      # the label used to identify the actual log event record part of a log event when added to Redis
       RecordAttributeLabel = "record"
 
+      # As we reference the port element of the configuration in several places, defined as a constant
       PortConfigLabel = 'port'
 
+      #define the default Redis port is no configuration is supplied, and warn if the default is not being used
       DefaultPort = 6379
 
-      #define the configuration parameters that will tell us where to connecto the Fluentd instance
+      # :section: configuration parameters
+      # define the configuration parameters that will tell us where to connect to the Fluentd instance
       desc "specifies the port to connect to Redis with, will default to 6379 if not specified"
       config_param :port, :integer, default: 6379, secret: false, alias: :port
       desc "Defines the host address for Redis, if not defined 127.0.0.1"
@@ -57,14 +68,18 @@ module Fluent
       # use the Redis connection as a member variable so we don't need to keep constructing connections
       # each time we need to perform an operation
       @redis
-      # We could enhance connection handling with:
-      # - provide the option to include username and password
-      # - HTTPS connectivity
-      # - connection pooling
-      # - specify connection timeouts and reconnection behavior
+
+      # :section: Utilities
 
       # build the representation of the log event to be used within Redis.
       # We've not overloaded the format operation as that disrupts default behaviors
+      
+      # Takes the log event and builds a representation of it ready for storing into Redis
+      #
+      # @param [String] tag the tag being used for this log event
+      # @param [Integer] time expressed as seconds from epoch
+      # @param [String] record representing the log event itself
+      # @return [String] a JSON formatted string ready for storing into Redis
       def redisFormat(tag,time,record)
         redis_entry = Hash.new
         redis_entry.store(RedislistOutput::TagAttributeLabel,tag.to_s)
@@ -74,39 +89,11 @@ module Fluent
         return redis_out
       end
 
-      # process the received events - pushing them onto the list
-      def process(tag,es)
-        if !@redis
-          connect_redis()
-        end
-
-        log.trace "process request received"
-        if (@redis.connected?)
-          @redis.multi
-            es.each do |time, record|
-              log.debug "process redis push:", tag, time, record, @listname
-              @redis.lpush(@listname,redisFormat(tag,time,record))
-            end
-          
-          @redis.exec
-        else
-          log.warn "no connection to Redis"
-          router.emit_error_event(tag, time, record, "No Redis")
-        end
-      end
-
-      def write(chunk)
-        log.debug chunk
-
-        @redis.multi 
-          chunk.each do |time, record|
-            log.debug "write sync redis push ", chunk.metadata.tag, time, record, @listname
-            @redis.lpush(@listname,redisFormat(chunk.metadata.tag,time,record))
-          end
-        @redis.exec
-      end
-
-      def checkPort(conf)
+      # locates the port configuration if it is set and then will generate a warning reminder to ensure ports
+      # should be checked to ensure they don't clash if the standard port is not being used.
+      # @param [conf] configuration data recieved from the Fluentd framework
+      def check_port(conf)
+        log.trace "checkport invoked"
         port = conf[PortConfigLabel]
         if (port != RedislistOutput::DefaultPort)
           log.info ("Default Redis port in use")
@@ -115,39 +102,21 @@ module Fluent
         end
       end
 
-      def checkBuffer(conf)
+      # locates the buffer  configuration if set then log the chunk size setting information
+      # @param [conf] configuration data recieved from the Fluentd framework
+      def check_buffer(conf)
+        log.trace "checkport invoked"
         if !conf.elements(name: 'buffer').empty?
           log.info "buffer set; size=", conf.elements(name: 'chunk_limit_records')
         end   
       end
 
-
-      def configure(conf)
-        super
-        checkPort (conf)
-        checkBuffer(conf)
-      end
-
-      def start
-        super
-        log.debug "starting redis plugin\n"
-        connect_redis()
-      end
-
-      def shutdown
-        super
-        if @redis 
-          begin
-            @redis.disconnect!
-            log.debug "disconnecting from redis\n"
-            @redis = nil
-          rescue
-            log.error "Error closing Redis connection"
-          end
-        end
-      end      
-
+      # Builds a connection to Redis using the relevant parameters provided including details such as retries and timeouts
+      # log whether we have connected or not.  If there is a redis connection failure ensure that the connection object is
+      # not set and log the cause of the connection issue
+      # @return [Redis connection] connection object or nil if there is an error
       def connect_redis()
+        log.trace "connect_redis - Create connection if non existant"
         if !@redis
           begin
             @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:@connection_timeout,reconnect_attempts:@reconnect_attempts)
@@ -163,6 +132,85 @@ module Fluent
           end
         end
       end
+
+      # :section: Class Extensions
+      # This overloads the Fluent::Output class methods for our requirements
+
+      # process the received events - pushing them onto the list. Tell Redis to handle multiple operations
+      # on the presumption that es may contain multiple log events
+      # @param [tag] the tag associated to these log event(s)
+      # @param [es] one or more log events to process with the timestamp and record
+      def process(tag,es)
+        log.trace "process request received ", tag
+
+        if !@redis
+          connect_redis()
+        end
+
+        if (@redis.connected?)
+          @redis.multi
+            es.each do |time, record|
+              log.debug "process redis push:", tag, time, record, @listname
+              @redis.lpush(@listname,redisFormat(tag,time,record))
+            end
+          
+          @redis.exec
+        else
+          log.warn "no connection to Redis"
+          router.emit_error_event(tag, time, record, "No Redis")
+        end
+      end
+
+      # implement our own version of write as we support the use of ther buffer, with a synchronous write
+      # @param [chunk] the buffer chunk
+      def write(chunk)
+        log.trace "write:", chunk
+
+        @redis.multi 
+          chunk.each do |time, record|
+            log.debug "write sync redis push ", chunk.metadata.tag, time, record, @listname
+            @redis.lpush(@listname,redisFormat(chunk.metadata.tag,time,record))
+          end
+        @redis.exec
+      end
+
+      # configure extended to perform some checks and validation on the buffer and port settings
+      # we've delegated each check to its own method
+      # @param [conf] configuration data from the Fluentd framework
+      def configure(conf)
+        super
+        log.trace "configure(conf)"
+        check_port(conf)
+        check_buffer(conf)
+      end
+
+      # we need to use super as it will cover the handling of secondary behavior and any tasks 
+      # relating to the buffer. The base class handles tracking of state - super will ensure that is done as well
+      # once the parent has completed its action's we'll get a Redis connection created. Better to create the 
+      # connection now as these things are relatively slow to be established.
+      def start
+        super
+        log.trace "starting redis plugin\n"
+        connect_redis()
+      end
+
+      # we need to use super as it will cover the handling of secondary behavior and any tasks 
+      # relating to the buffer.The base class handles tracking of state - super will ensure that is done as well
+      # Once the parent class has finished we'll get the Redis connection to be close and then drop the connection
+      # object.
+      def shutdown
+        super
+        log.trace "shutdown"
+        if @redis 
+          begin
+            @redis.disconnect!
+            log.debug "disconnecting from redis\n"
+            @redis = nil
+          rescue
+            log.error "Error closing Redis connection"
+          end
+        end
+      end      
 
     end
   end
