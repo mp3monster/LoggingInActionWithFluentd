@@ -70,9 +70,11 @@ module Fluent
       desc "Process as FIFO or as LIFO"
       config_param :direction, :string, default: "FIFO"    
     
-      # the labels to identify the three core constructs of a log event when added to Redis
+      # the label used to identify the tag part of a log event when added to Redis
       TagAttributeLabel = "tag"
+      # the label used to identify the time part of a log event when added to Redis
       TimeAttributeLabel = "time"
+      # the label used to identify the actual log event record part of a log event when added to Redis
       RecordAttributeLabel = "record"      
 
       # this is the loop controller to continue the process going until
@@ -95,7 +97,7 @@ module Fluent
       # look at the configuration determine which way should the list be used LIFO or FIFO
       # if in doubt we adopt the FIFO behavior. If the configuration isn't set we default to FIFO
       # if a value is provided we dont recognize, then default to FIFO but report a warning
-      # @param [conf] configuration data
+      # @param conf [Object] configuration data provided from Fluentd
       def setfifo(conf)
         @fifo=true
         if !conf.elements(name: directionLabel).empty?
@@ -114,14 +116,12 @@ module Fluent
 
       # this takes the log event and incorporates the original value (tag or time) into the log event
       # using the provided element name
-      # @param [data] the structure holding the value to be inserted - this will be a base element using the
-      # structure used when storing the log event in Redis
-      # @param [data_record] the log event record construct which needs the element adding to
-      # @param name of the element in the Redis stored structure to be incorporated into the log event record
-      # i.e. time or tag
-      # @param [new_name] the name string to use for the element going into the log event record structure
-      # @return the appended data_record
-      def injectOriginalValue (data, data_record, key, new_name)
+      # @param data [String] structure holding the value to be inserted - this will be a base element using the structure used when storing the log event in Redis
+      # @param data_record [String] log event record construct which needs the element adding to
+      # @param key [String] the element in the Redis stored structure to be incorporated into the log event record i.e. time or tag
+      # @param new_name [String] name string to use for the element going into the log event record structure
+      # @return the data_record with the new attributed added
+      def inject_original_value (data,data_record,key,new_name)
         log.debug "injecting original ", key
 
         if (data_record.length > 2)
@@ -139,19 +139,18 @@ module Fluent
       def connect_redis()
         log.trace "connect_redis called"
         if !@redis
-        begin
-          log.trace "initialize redis ", @hostaddr,":",@port
-              @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
-              log.trace "redis object initialized"
-              log.debug "Connected to Redis "+@redis.connected?.to_s
-            rescue Redis::BaseConnectionError, Redis::CannotConnectError => conn_err
-              log.error "Connection error - ", conn_err.message, "\n connection timeout=", @connection_timeout, "\n connection attempts=", @reconnect_attempts
-              @redis = nil
-            rescue => err
-              log.error "Error connecting to redis - ", err.message, "|",err.class.to_s
-              @redis = nil
-              return nil
-            end
+          begin
+            log.trace "initialize redis ", @hostaddr,":",@port
+            @redis=Redis.new(host:@hostaddr,port:@port,connect_timeout:5,reconnect_attempts:2)
+            log.trace "redis object initialized"
+            log.debug "Connected to Redis "+@redis.connected?.to_s
+          rescue Redis::BaseConnectionError, Redis::CannotConnectError => conn_err
+            log.error "Connection error - ", conn_err.message, "\n connection timeout=", @connection_timeout, "\n connection attempts=", @reconnect_attempts
+            @redis = nil
+          rescue => err
+            log.error "Error connecting to redis - ", err.message, "|",err.class.to_s
+            @redis = nil
+            return nil
           end
         end
       end
@@ -163,69 +162,69 @@ module Fluent
       # we keep popping from redis for as long as we can assuming we have a 
       # connection. Use our utilities to help with handling the events original time stamp
       def emit
-          log.trace "emit triggered"
-          if !@redis
-            log.debug "reconnecting Redis ",@hostaddr,":",@port
-            connect_redis()
-          end
-
-          # if we have a connection then we can try and pop entries
-          # from the list
-          if @redis
-            keep_popping = true
-
-            while keep_popping
-              # pop from the list using the configured end
-              if (@fifo)
-                popped = @redis.rpop(@listname)
-              else
-                popped = @redis.lpop(@listname)
-              end
-    
-              log.debug "Popped",@listname, ": ", popped
-              # if we got a record from the list then let's process it
-              if popped
-                data = JSON.parse(popped)
-
-                #decide what to do about the original time, if it's used
-                # then set the log event time to the original value otherwise
-                # time for the event is now
-                if (@use_original_time)
-                  time = data[TimeAttributeLabel]
-                else
-                  time = Fluent::EventTime.now
-                end
-
-                #decide what to do with the original tag
-                if (@use_original_tag)
-                  tag = data[RedislistInput::TagAttributeLabel]
-                else
-                  tag = @tag
-                end
-
-                # extract the original log event record
-                data_record = data.fetch(RecordAttributeLabel).to_s
-                log.debug "original data record=>",data_record
-
-                if (@add_original_time && !(data_record.include? '"'+@add_original_time_name+'"'))
-                  data_record = injectOriginalValue(data,data_record,RedislistInput::TimeAttributeLabel,@add_original_time_name)
-                end
-
-                if @add_original_tag && !(data_record.include? '"'+@add_original_tag_name+'"')
-                  data_record = injectOriginalValue(data,data_record,RedislistInput::TagAttributeLabel,@add_original_tag_name)
-                end
-
-                log.debug "Emitting -->", tag," ", time, " ", data_record
-                router.emit(tag, time, data_record)
-              else
-                # no more events so let the loop drop
-                keep_popping = false
-              end
-            end
-          else
-            log.warn "No Redis - ", @redis
-          end
+        log.trace "emit triggered"
+        if !@redis
+          log.debug "reconnecting Redis ",@hostaddr,":",@port
+          connect_redis()
         end
+
+        # if we have a connection then we can try and pop entries
+        # from the list
+        if @redis
+          keep_popping = true
+
+          while keep_popping
+            # pop from the list using the configured end
+            if (@fifo)
+              popped = @redis.rpop(@listname)
+            else
+              popped = @redis.lpop(@listname)
+            end
+    
+            log.debug "Popped",@listname, ": ", popped
+            # if we got a record from the list then let's process it
+            if popped
+              data = JSON.parse(popped)
+
+              #decide what to do about the original time, if it's used
+              # then set the log event time to the original value otherwise
+              # time for the event is now
+              if (@use_original_time)
+                time = data[TimeAttributeLabel]
+              else
+                time = Fluent::EventTime.now
+              end
+
+              #decide what to do with the original tag
+              if (@use_original_tag)
+                tag = data[RedislistInput::TagAttributeLabel]
+              else
+                tag = @tag
+              end
+
+              # extract the original log event record
+              data_record = data.fetch(RecordAttributeLabel).to_s
+              log.debug "original data record=>",data_record
+
+              if (@add_original_time && !(data_record.include? '"'+@add_original_time_name+'"'))
+                data_record = inject_original_value(data,data_record,RedislistInput::TimeAttributeLabel,@add_original_time_name)
+              end
+
+              if @add_original_tag && !(data_record.include? '"'+@add_original_tag_name+'"')
+                data_record = inject_original_value(data,data_record,RedislistInput::TagAttributeLabel,@add_original_tag_name)
+              end
+
+              log.debug "Emitting -->", tag," ", time, " ", data_record
+              router.emit(tag, time, data_record)
+            else
+              # no more events so let the loop drop
+              keep_popping = false
+            end
+          end
+        else
+          log.warn "No Redis - ", @redis
+        end
+      end
 
       # Setup the loop thread and if nothing to emit - go to sleep
       # implemented so we can control the thread sleep interval and invoke the
@@ -240,12 +239,11 @@ module Fluent
             sleep @run_interval
           end
         end
-
       end
 
       # overload the configure(conf) to process the fifo/lifo configurartion option. But
       # invoke the parent as this will help with any other configuration options
-      # @param [conf] the Fluentd confguration object
+      # @param conf [Object]  the Fluentd confguration object
       def configure(conf)
         super
         setfifo(conf)
@@ -278,8 +276,8 @@ module Fluent
             log.error "Error closing Redis connection"
           end
         end
-      end
-      
-      
+      end #shutdown
+
+    end # class
   end
 end
