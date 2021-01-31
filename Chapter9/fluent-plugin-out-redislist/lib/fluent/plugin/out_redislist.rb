@@ -172,10 +172,10 @@ module Fluent
         log.trace "write:", chunk
 
         @redis.multi 
-          chunk.each do |time, record|
+        chunk.each do |time, record|
             log.debug "write sync redis push ", chunk.metadata.tag, time, record, @listname
             @redis.lpush(@listname,redisFormat(chunk.metadata.tag,time,record))
-          end
+        end
         @redis.exec
       end
 
