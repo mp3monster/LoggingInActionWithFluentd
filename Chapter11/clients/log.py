@@ -1,15 +1,13 @@
-import logging, logging.handlers
-testHandler = logging.handlers.HTTPHandler('localhost:18080', '/test', method='POST')
-custom_format = {
-  'host': '%(hostname)s',
-  'where': '%(module)s.%(funcName)s',
-  'type': '%(levelname)s',
-  'stack_trace': '%(exc_text)s'
-}
-formatter = logging.Formatter(custom_format)
-testHandler.setFormatter(formatter)
+#This implementation makes no use of the Python logging framework or the Fluentd 
+# logging library. It uses pure HTTP based traffic.
+import httplib, urllib
+import datetime
 
-log = logging.getLogger("test")
-log.addHandler(testHandler)
+message = '{"from":"log.py", "at":"'+datetime.datetime.now().strftime("%d-%m-%Y %H-%M-%S")+'"}'
+headers = {"Content-Type": "application/JSON", "Accept": "text/plain", "Content-Length":len(message)}
+conn = httplib.HTTPConnection("localhost:18085")
+conn.request("POST", "/test", message, headers)
 
-log.warning ('{"beep":"beep"}')
+response = conn.getresponse()
+print response.status, response.reason
+conn.close()

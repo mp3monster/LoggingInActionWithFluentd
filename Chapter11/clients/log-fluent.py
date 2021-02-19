@@ -1,17 +1,9 @@
-import logging
-from fluent import handler
+#This implementation makes use of the Fluentd implementation directly without the use of
+# the Python logging framework
+import datetime, time
+from fluent import handler, sender
 
-testHandler = handler.FluentHandler('', host='localhost', port=18095)
+sender= sender.FluentSender('test', host='localhost', port=18090)
+# using the Fluentd Handler means that msgpack will be used and therefore the source plugin in Fluentd is a forward plugin.
 
-custom_format = {
-  'host': '%(hostname)s',
-  'where': '%(module)s.%(funcName)s',
-  'type': '%(levelname)s',
-  'stack_trace': '%(exc_text)s'
-}
-formatter = handler.FluentRecordFormatter(custom_format)
-testHandler.setFormatter(formatter)
-
-log = logging.getLogger("test")
-log.addHandler(testHandler)
-log.warning ('{"beep":"beep"}')
+sender.emit_with_time('', int(time.time()), {'from': 'log-fluent', 'at': datetime.datetime.now().strftime("%d-%m-%Y %H-%M-%S")})
