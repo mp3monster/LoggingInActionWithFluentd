@@ -1,0 +1,25 @@
+logging:
+  version: 1
+
+  formatters:
+    fluent_fmt:
+      '()': fluent.handler.FluentRecordFormatter
+      format:
+        level: '%(levelname)s'
+        hostname: '%(hostname)s'
+        where: '%(module)s.%(funcName)s'
+
+  handlers:
+    fluent:
+      class: fluent.handler.FluentHandler
+      host: localhost
+      tag: test
+      port: 18090
+      level: DEBUG
+      formatter: fluent_fmt
+
+  loggers:
+    '': # root logger
+      handlers: [fluent]
+      level: DEBUG
+      propagate: False    

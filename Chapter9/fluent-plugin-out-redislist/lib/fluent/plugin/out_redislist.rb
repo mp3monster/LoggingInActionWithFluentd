@@ -45,15 +45,20 @@ module Fluent
       # :section: configuration parameters
       # define the configuration parameters that will tell us where to connect to the Fluentd instance
       desc "specifies the port to connect to Redis with, will default to 6379 if not specified"
-      config_param :port, :integer, default: 6379, secret: false, alias: :port
+      config_param :port, :integer, default: 6379, secret: false, alias: :portNo
+
       desc "Defines the host address for Redis, if not defined 127.0.0.1"
       config_param :hostaddr, :string, default: "127.0.0.1", secret: false
+
       desc "Defines the name of the list to be used in Redis, by default this is Fluentd"
       config_param :listname, :string, default: "fluentd"
+
       desc "Defines the number of reconnection attempts before giving up on connecting to the Redis server"
       config_param :reconnect_attempts, :integer, default: 2
+
       desc "Defines the number of seconds before timing out a connection to the Redis server"
       config_param :connection_timeout, :integer, default: 5
+      
       desc "Defines the number of log events in a chunk"
       config_param :chunksize, :integer, default: 20
 
@@ -167,10 +172,10 @@ module Fluent
         log.trace "write:", chunk
 
         @redis.multi 
-          chunk.each do |time, record|
+        chunk.each do |time, record|
             log.debug "write sync redis push ", chunk.metadata.tag, time, record, @listname
             @redis.lpush(@listname,redisFormat(chunk.metadata.tag,time,record))
-          end
+        end
         @redis.exec
       end
 
