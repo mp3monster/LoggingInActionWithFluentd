@@ -1,0 +1,14 @@
+{
+"log-driver" : "fluentd",
+"log-level": "debug",
+"raw-logs": true,
+  "log-opts": {
+    "env": "os,customer",
+    "labels": "production_status,dev",
+    "fluentd-retry-wait": "1s",
+    "fluentd-max-retries": "5000",
+    "fluentd-sub-second-precision": "false",
+    "tag": "{{.ID}}-{{.ImageID}}",
+    "fluentd-address": "w.x.y.z:28080"
+  }
+}
