@@ -4,8 +4,7 @@ LABEL Description="simple setup to illustrate the behaviour of the daemonset - N
 RUN apt-get update -y; \
   apt-get install -y; \
   apt-get install apt-utils -y; \
-  apt-get install wget -y; \
-  wget https://raw.githubusercontent.com/mp3monster/LoggingInActionWithFluentd/master/Chapter8/Docker/run.sh; \
-  wget https://raw.githubusercontent.com/mp3monster/LoggingInActionWithFluentd/master/Chapter8/Fluentd/file-forward.conf; \
-  chmod a+x run.sh
-CMD ./run.sh
+  apt-get install wget -y; 
+CMD wget https://raw.githubusercontent.com/mp3monster/LoggingInActionWithFluentd/master/Chapter8/Docker/run.sh; \
+  && chmod a+x run.sh \
+  && ./run.sh
