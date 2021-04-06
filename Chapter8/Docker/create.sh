@@ -1,1 +1,1 @@
-docker build -f Dockerfile --force-rm -t mp3monster/simple-fluentd-daemonset:v1 ./
+docker build --force-rm -f Dockerfile -t mp3monster/simple-fluentd-daemonset:v1 ./
