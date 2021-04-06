@@ -1,33 +1,35 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: fluentd
+  name: simple-fluentd
   namespace: kube-system
   labels:
-    k8s-app: fluentd-logging
+    k8s-app: simple-fluentd-logging
     version: v1
 spec:
   selector:
     matchLabels:
-      k8s-app: fluentd-logging
+      k8s-app: simple-fluentd-logging
       version: v1
   template:
     metadata:
       labels:
-        k8s-app: fluentd-logging
+        k8s-app: simple-fluentd-logging
         version: v1
     spec:
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: fluentd
-        image: fluent/fluentd-kubernetes-daemonset:v1-debian-forward
+      - name: simple-fluentd
+        image: mp3monster/simple-fluentd-daemonset:v1
         env:
           - name:  FLUENT_FOWARD_HOST
-            value: "w.x.y.z"
+            value: "192.168.1.130"
           - name:  FLUENT_FOWARD_PORT
-            value: "12080"
+            value: "28080"
+          - name: FLUENT_SOURCE_PATH
+            value: /var/lib/containers/logs-from-log-simulator-in-log-simulator*.*
         resources:
           limits:
             memory: 200Mi
