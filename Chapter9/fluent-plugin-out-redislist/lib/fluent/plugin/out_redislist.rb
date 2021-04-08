@@ -110,7 +110,7 @@ module Fluent
       # locates the buffer  configuration if set then log the chunk size setting information
       # @param [conf] configuration data recieved from the Fluentd framework
       def check_buffer(conf)
-        log.trace "checkport invoked"
+        log.trace "checkbuffer invoked"
         if !conf.elements(name: 'buffer').empty?
           log.info "buffer set; size=", conf.elements(name: 'chunk_limit_records')
         end   
