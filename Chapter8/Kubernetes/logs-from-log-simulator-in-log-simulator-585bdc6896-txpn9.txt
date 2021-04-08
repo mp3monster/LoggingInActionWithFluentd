@@ -1,0 +1,473 @@
+got simulator
+--2021-04-05 17:20:20--  https://raw.githubusercontent.com/mp3monster/LogGenerator/master/docker/default.properties
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 213 [text/plain]
+Saving to: ‘default.properties’
+
+     0K                                                       100% 17.4M=0s
+
+2021-04-05 17:20:20 (17.4 MB/s) - ‘default.properties’ saved [213/213]
+
+--2021-04-05 17:20:20--  https://raw.githubusercontent.com/mp3monster/LogGenerator/master/docker/source.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1325 (1.3K) [text/plain]
+retrieved defaults
+Saving to: ‘source.txt’
+
+     0K .                                                     100% 67.6M=0s
+
+2021-04-05 17:20:20 (67.6 MB/s) - ‘source.txt’ saved [1325/1325]
+
+Groovy Version: 3.0.7 JVM: 1.8.0_275 Vendor: AdoptOpenJDK OS: Linux
+Starting ...
+Going to use default.properties
+handling properties file - default.properties
+In verbose mode
+entry ==>offset=100|INFO||com.demo|The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.
+entry ==>offset=100|INFO||com.demo|I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect
+entry ==>offset=100|INFO||com.demo|Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy
+entry ==>offset=300|INFO||com.demo|Entered what I ate today into my new fitness app and it just sent an ambulance to my house
+entry ==>offset=300|INFO||com.demo|The first time I got a universal remote control, I thought to myself This changes everything
+entry ==>offset=300|INFO||com.demo|Is your name Wi-Fi? Because Im feeling a connection
+entry ==>offset=300|INFO||com.demo|Failure is not an option - it comes bundled with the software.
+entry ==>offset=300|INFO||com.demo|Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.
+entry ==>offset=300|INFO||com.demo|Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here
+entry ==>offset=300|INFO||com.demo|I went to buy camouflage trousers but I couldnt find any
+entry ==>offset=300|INFO||com.demo|Im a big fan of whiteboards. I find them quite re-markable.
+entry ==>offset=300|INFO||com.demo|The problem with kleptomaniacs is that they always take things literally
+entry ==>offset=300|INFO||com.demo|UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity
+entry ==>offset=300|INFO||com.demo|Unix is user friendly. Its just selective about who its friends are
+Performing data set pass 1 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":1}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":1}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":1}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":1}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":1}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":1}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":1}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":1}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":1}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":1}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":1}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":1}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":1}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":1}
+Performing data set pass 2 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":2}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":2}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":2}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":2}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":2}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":2}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":2}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":2}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":2}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":2}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":2}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":2}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":2}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":2}
+Performing data set pass 3 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":3}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":3}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":3}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":3}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":3}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":3}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":3}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":3}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":3}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":3}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":3}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":3}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":3}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":3}
+Performing data set pass 4 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":4}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":4}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":4}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":4}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":4}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":4}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":4}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":4}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":4}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":4}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":4}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":4}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":4}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":4}
+Performing data set pass 5 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":5}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":5}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":5}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":5}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":5}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":5}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":5}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":5}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":5}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":5}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":5}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":5}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":5}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":5}
+Performing data set pass 6 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":6}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":6}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":6}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":6}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":6}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":6}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":6}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":6}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":6}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":6}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":6}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":6}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":6}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":6}
+Performing data set pass 7 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":7}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":7}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":7}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":7}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":7}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":7}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":7}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":7}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":7}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":7}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":7}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":7}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":7}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":7}
+Performing data set pass 8 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":8}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":8}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":8}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":8}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":8}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":8}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":8}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":8}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":8}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":8}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":8}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":8}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":8}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":8}
+Performing data set pass 9 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":9}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":9}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":9}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":9}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":9}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":9}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":9}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":9}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":9}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":9}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":9}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":9}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":9}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":9}
+Performing data set pass 10 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":10}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":10}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":10}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":10}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":10}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":10}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":10}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":10}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":10}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":10}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":10}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":10}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":10}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":10}
+Performing data set pass 11 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":11}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":11}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":11}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":11}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":11}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":11}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":11}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":11}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":11}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":11}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":11}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":11}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":11}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":11}
+Performing data set pass 12 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":12}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":12}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":12}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":12}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":12}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":12}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":12}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":12}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":12}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":12}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":12}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":12}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":12}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":12}
+Performing data set pass 13 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":13}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":13}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":13}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":13}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":13}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":13}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":13}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":13}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":13}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":13}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":13}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":13}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":13}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":13}
+Performing data set pass 14 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":14}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":14}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":14}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":14}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":14}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":14}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":14}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":14}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":14}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":14}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":14}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":14}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":14}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":14}
+Performing data set pass 15 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":15}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":15}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":15}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":15}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":15}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":15}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":15}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":15}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":15}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":15}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":15}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":15}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":15}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":15}
+Performing data set pass 16 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":16}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":16}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":16}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":16}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":16}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":16}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":16}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":16}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":16}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":16}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":16}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":16}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":16}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":16}
+Performing data set pass 17 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":17}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":17}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":17}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":17}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":17}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":17}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":17}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":17}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":17}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":17}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":17}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":17}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":17}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":17}
+Performing data set pass 18 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":18}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":18}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":18}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":18}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":18}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":18}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":18}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":18}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":18}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":18}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":18}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":18}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":18}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":18}
+Performing data set pass 19 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":19}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":19}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":19}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":19}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":19}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":19}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":19}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":19}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":19}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":19}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":19}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":19}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":19}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":19}
+Performing data set pass 20 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":20}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":20}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":20}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":20}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":20}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":20}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":20}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":20}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":20}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":20}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":20}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":20}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":20}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":20}
+Performing data set pass 21 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":21}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":21}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":21}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":21}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":21}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":21}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":21}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":21}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":21}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":21}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":21}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":21}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":21}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":21}
+Performing data set pass 22 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":22}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":22}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":22}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":22}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":22}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":22}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":22}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":22}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":22}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":22}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":22}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":22}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":22}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":22}
+Performing data set pass 23 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":23}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":23}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":23}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":23}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":23}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":23}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":23}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":23}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":23}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":23}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":23}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":23}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":23}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":23}
+Performing data set pass 24 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":24}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":24}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":24}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":24}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":24}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":24}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":24}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":24}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":24}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":24}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":24}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":24}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":24}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":24}
+Performing data set pass 25 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":25}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":25}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":25}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":25}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":25}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":25}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":25}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":25}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":25}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":25}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":25}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":25}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":25}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":25}
+Performing data set pass 26 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":26}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":26}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":26}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":26}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":26}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":26}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":26}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":26}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":26}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":26}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":26}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":26}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":26}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":26}
+Performing data set pass 27 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":27}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":27}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":27}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":27}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":27}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":27}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":27}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":27}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":27}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":27}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":27}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":27}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":27}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":27}
+Performing data set pass 28 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":28}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":28}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":28}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":28}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":28}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":28}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":28}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":28}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":28}
+{"source":"basicFile", "event":"I went to buy camouflage trousers but I couldnt find any", "cycle":28}
+{"source":"basicFile", "event":"Im a big fan of whiteboards. I find them quite re-markable.", "cycle":28}
+{"source":"basicFile", "event":"The problem with kleptomaniacs is that they always take things literally", "cycle":28}
+{"source":"basicFile", "event":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity", "cycle":28}
+{"source":"basicFile", "event":"Unix is user friendly. Its just selective about who its friends are", "cycle":28}
+Performing data set pass 29 of 50
+{"source":"basicFile", "event":"The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. And then everything crashed.", "cycle":29}
+{"source":"basicFile", "event":"I changed my password to incorrect. So whenever I forget what it is the computer will say Your password is incorrect", "cycle":29}
+{"source":"basicFile", "event":"Question What do you call the security people outside of a Samsung Store? Answer Guardians of the Galaxy", "cycle":29}
+{"source":"basicFile", "event":"Entered what I ate today into my new fitness app and it just sent an ambulance to my house", "cycle":29}
+{"source":"basicFile", "event":"The first time I got a universal remote control, I thought to myself This changes everything", "cycle":29}
+{"source":"basicFile", "event":"Is your name Wi-Fi? Because Im feeling a connection", "cycle":29}
+{"source":"basicFile", "event":"Failure is not an option - it comes bundled with the software.", "cycle":29}
+{"source":"basicFile", "event":"Yesterday I decided to change my WiFi name to Hack me if you can and when I woke up this morning I saw the name changed to Challenge accepted somebody help.", "cycle":29}
+{"source":"basicFile", "event":"Four fonts walk into a bar. The barman says: Oi - get out. We dont want your type in here", "cycle":29}
