@@ -1,2 +1,2 @@
-kubectl delete daemonset fluentd --namespace=kube-system
-minikube kubectl -- apply -f Kubernetes/fluentd-daemonset.yaml
+minikube kubectl -- delete daemonset fluentd --namespace=kube-system
+minikube kubectl -- apply -f Kubernetes/fluentd-daemonset.yaml --namespace=kube-system
