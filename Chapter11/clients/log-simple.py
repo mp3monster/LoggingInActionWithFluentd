@@ -10,8 +10,8 @@ custom_format = {
   'type': '%(levelname)s',
   'stack_trace': '%(exc_text)s'
 }
-formatter = logging.Formatter(custom_format)
-testHandler.setFormatter(formatter)
+myFormatter = logging.Formatter(custom_format)
+testHandler.setFormatter(myFormatter)
 
 log = logging.getLogger("test")
 log.addHandler(testHandler)
