@@ -1,5 +1,5 @@
 +100 hello
-+3000 hear about the new O Reilly book called "Essential Changing stuff and seeing what happens"
++3000 hear about the new O Reilly book called -Essential Changing stuff and seeing what happens
 +1 Job requirement - must understand core programming concepts  - able to code without cut and paste from StackOverflow
 +3000 dictionary definition of a programmer - A machine that turns coffee into code
 +1000 Programmer - A person who fixed a problem you don't know you have, in a way you don't understand

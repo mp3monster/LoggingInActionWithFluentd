@@ -1,19 +1,13 @@
 {"time":1362020400, "time-offset" : "+100", "message" : "hello"}
-{"time":1362020400,"time-offset" : "+3000", "message" : " hear about the new O Reilly book"}
-{"time":1362020400,"time-offset" : "+1000", "message" : " called Essential Changing stuff and seeing what happens"}
-{"time":1362020400,"time-offset" : "+2000", "message" : " Documentation is like sex"}
-{"time":1362020400,"time-offset" : "+2000", "message" : " When it's good, it's very good"}
-{"time":1362020400,"time-offset" : "+300", "message" : " When it's bad, its better than nothing"}
-{"time":1362020400,"time-offset" : "+1", "message" : " Job requirement"}
+{"time":1362020400,"time-offset" : "+3000", "message" : "hear about the new O Reilly book called -Essential Changing stuff and seeing what happens"}
+{"time":1362020400,"time-offset" : "+2000", "message" : "Job requirement - must understand core programming concepts  - able to code without cut and paste from StackOverflow"}
 {"time":1362020400,"time-offset" : "+5", "message" : " must understand core programming concepts"}
-{"time":1362020400,"time-offset" : "+10", "message" : " able to code without cut and paste from StackOverflow"}
-{"time":1362020400,"time-offset" : "+3000", "message" : " dictionary definition of a programmer - A machine that turns coffee into code"}
-{"time":1362020400,"time-offset" : "+1000", "message" : " Programmer - A person who fixed a problem you don't know you have, in a way you don't understand"}
+{"time":1362020400,"time-offset" : "+3000", "message" : " dictionary definition of a programmer - A machine that turns coffee into code Programmer - A person who fixed a problem you don't know you have, in a way you don't understand"}
 {"time":1362020400,"time-offset" : "+50", "message" : " algorithm - word used by programmers when they dont want to explain what they did"}
 {"time":1362020400,"time-offset" : "+60", "message" : " hardware - the part of the computer that you can KICK"}
-{"time":1362020400,"time-offset" : "+5000", "message" : " What is the object-orientated way to become wealthy?"}
-{"time":1362020400,"time-offset" : "+10", "message" : " inheritance"}
-{"time":1362020400,"time-offset" : "+1000", "message" : " what do computers and air conditioners have in common?"}
-{"time":1362020400,"time-offset" : "+10", "message" : " they both become useless when you open windows"}
-
+{"time":1362020400,"time-offset" : "+5000", "message" : " What is the object-orientated way to become wealthy? inheritance"}
+{"time":1362020400,"time-offset" : "+1000", "message" : " what do computers and air conditioners have in common? they both become useless when you open windows"}
+{"time":1362020400,"time-offset" : "+1000", "message" : " A programmer had a problem - he decided to use Java He now has a ProblemFactory"}
+{"time":1362020400,"time-offset" : "+1000", "message" : " if you put a million monkeys on a million keyboards, one of them will eventually write a Java program, The REST will write Perl"}
+{"time":1362020400,"time-offset" : "+1000", "message" : " little bugs in the code, 99 little bugs in the code, 1 bug fixed ... compiled again 100 little bugs in the code"}
 
