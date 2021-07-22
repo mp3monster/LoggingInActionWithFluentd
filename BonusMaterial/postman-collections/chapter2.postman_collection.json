@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "1014c824-1e9f-4e76-8127-c0e67c29e18e",
+		"name": "chapter2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "config",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Hello\" : \"World\"}"
+				},
+				"url": {
+					"raw": "0.0.0.0:24220/api/plugins.json",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "24220",
+					"path": [
+						"api",
+						"plugins.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloWorld-withTag",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Hello\" : \"World\"}"
+				},
+				"url": {
+					"raw": "localhost:18080/myTag",
+					"host": [
+						"localhost"
+					],
+					"port": "18080",
+					"path": [
+						"myTag"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

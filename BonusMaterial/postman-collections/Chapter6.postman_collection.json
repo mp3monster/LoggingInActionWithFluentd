@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "b28088e9-b352-4dfb-b79f-dc96615a9356",
+		"name": "Chapter6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ElasticSearch List Indices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/_cat/indices",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"indices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Elastic Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elastic Search Create fluentd-book",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"connection": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Date",
+						"value": "2021-06-28",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key=pXp6AXZZYFdxYM62o0AJhdp5ABiaC4HrjaQ0Ubp2&date=2021-06-28",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "pXp6AXZZYFdxYM62o0AJhdp5ABiaC4HrjaQ0Ubp2"
+						},
+						{
+							"key": "date",
+							"value": "2021-06-28"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
